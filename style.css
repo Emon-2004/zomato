@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --red-core:    #D72638;
+  --red-deep:    #8B0000;
+  --red-bright:  #FF3A4A;
+  --red-blush:   #FFE4E6;
+  --charcoal:    #1A0A0C;
+  --off-white:   #FDF6F6;
+  --text-muted:  #7A4A4E;
+  --shadow-red:  rgba(215, 38, 56, 0.25);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--off-white);
+  color: var(--charcoal);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Decorative background grain ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 110% -10%, rgba(215,38,56,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at -10% 110%, rgba(139,0,0,0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: 72px;
+  background: var(--charcoal);
+  border-bottom: 3px solid var(--red-core);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+
+/* Brand / Logo */
+header > div:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--off-white);
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+header > div:first-child::after {
+  content: '●';
+  font-size: 0.45em;
+  color: var(--red-bright);
+  position: absolute;
+  top: 4px;
+  right: -14px;
+}
+
+/* Nav links */
+header > div:last-child {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+header a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+header a:hover {
+  color: var(--off-white);
+  border-bottom-color: var(--red-bright);
+}
+
+/* ── Main ── */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 5vw;
+  position: relative;
+  z-index: 1;
+}
+
+main > div {
+  max-width: 680px;
+  text-align: center;
+  animation: fadeUp 0.8s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+main h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-bottom: 1.25rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Red underline accent on h1 */
+main h1::after {
+  content: '';
+  display: block;
+  height: 5px;
+  width: 60%;
+  margin: 0.45rem auto 0;
+  background: linear-gradient(90deg, var(--red-core), var(--red-bright));
+  border-radius: 99px;
+}
+
+main p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+/* ── Decorative pill badge (optional flair) ── */
+main > div::before {
+  content: '🍕 Fast Delivery · Fresh Food';
+  display: inline-block;
+  background: var(--red-blush);
+  color: var(--red-deep);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(215,38,56,0.2);
+}
+
+/* ── Footer ── */
+footer {
+  position: relative;
+  z-index: 1;
+  background: var(--charcoal);
+  border-top: 1px solid rgba(215,38,56,0.35);
+  text-align: center;
+  padding: 1.5rem 5vw;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  header {
+    padding: 0 1.25rem;
+    height: 60px;
+  }
+
+  header > div:last-child {
+    gap: 1.1rem;
+  }
+
+  header a {
+    font-size: 0.78rem;
+  }
+
+  main {
+    padding: 4rem 1.5rem;
+  }
+}
